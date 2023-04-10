@@ -44,6 +44,7 @@ function Weather() {
   const getWeatherInfo = async () => {
     try {
       const response = await axios.get(
+        //비동기처리르 해야하기 때무넹 await를 사용.
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_WEATHER_API}&units=metric`
       ); // process.env.REACT_APP_WEATHER_API 는 환경변수. 배포를 하기전에 사용자들이 접속하게 되면 외부로 노출되게 됨. 그 노출을 막기위해 필요. (.env 파일을 만들고 그안에 코드를 넣어줘야 사용할 수있음.)
 
@@ -65,7 +66,7 @@ function Weather() {
   }, []);
   useEffect(() => {
     //lat,lon가 업데이트 될때마다 실행된다.
-    if (!lat || !lon) return; //lat가 없거나 lon가 없다면 실행을 멈춰라.(함수를 리턴하도록 함.)
+    if (!lat || !lon) return; //lat가 없거나 lon가 없다면 실행을 멈춰라.(함수를 리턴하도록 함.) 만약 조건을 만족하면 아래 getWeatherInfo를 실행.
 
     getWeatherInfo();
   }, [lat, lon]);
@@ -78,7 +79,7 @@ function Weather() {
       {weatherInfo ? (
         <div className="flex flex-col justify-center items-center">
           {weatherIcon[weatherInfo.weather[0].icon.substring(0, 2)]}
-          {/* icon을 날씨 상태에 따라서 보여줄 수 있도록 만들어줌. */}
+          {/* icon을 날씨 상태에 따라서 보여줄 수 있도록 만들어줌. 또한, substring을 통해 밤,낮 D,N로 표현되는것을 방지하도록 설정. */}
           <div className="mt-8 text-2xl">
             {weatherInfo.name},{" "}
             {weatherInfo.main.temp.toString().substring(0, 4)} ℃
@@ -86,7 +87,7 @@ function Weather() {
           </div>
         </div>
       ) : (
-        "날씨 정보를 로딩중입니다 ..."
+        "날씨 정보를 로딩중입니다 ..." // 삼항연산자를 사용하여 weatherInfo가 맞으면 아래 코드를 실행시키고, 아니라면 로딩중이라는 text를 송출한다.
       )}
     </div>
   );

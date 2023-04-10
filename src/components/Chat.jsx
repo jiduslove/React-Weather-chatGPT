@@ -28,7 +28,7 @@ const Chat = () => {
         "https://holy-fire-2749.fly.dev/chat",
         {
           question, //   question: `${question}`, question: question,  question, 이렇게 3가지는 다 같은표현
-        },
+        }, //지금까지 입력한 값이 question에 저장됨.
         {
           headers: {
             Authorization: "Bearer BLOCKCHAINSCHOOL3",
@@ -46,11 +46,11 @@ const Chat = () => {
       console.log(response);
       setContent(response.data.choices[0].message.content);
 
-      setIsLoading(false);
+      setIsLoading(false); //로딩이 중복으로 실행되지 않게끔 false로 코드를 작성.
     } catch (error) {
       console.error(error);
 
-      setIsLoading(false);
+      setIsLoading(false); //로딩이 중복으로 실행되지 않게끔 false로 코드를 작성.
     }
   };
 
