@@ -44,7 +44,7 @@ function Weather() {
   const getWeatherInfo = async () => {
     try {
       const response = await axios.get(
-        //비동기처리르 해야하기 때무넹 await를 사용.
+        //비동기처리를 해야하기 떄문에 await를 사용.
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_WEATHER_API}&units=metric`
       ); // process.env.REACT_APP_WEATHER_API 는 환경변수. 배포를 하기전에 사용자들이 접속하게 되면 외부로 노출되게 됨. 그 노출을 막기위해 필요. (.env 파일을 만들고 그안에 코드를 넣어줘야 사용할 수있음.)
 
