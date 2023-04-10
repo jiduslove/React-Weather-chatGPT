@@ -1,5 +1,8 @@
+import Chat from "./components/Chat";
+import Weather from "./components/Weather";
+
 function App() {
-  return <div className="bg-red-100">Hello, React</div>;
+  return <Chat />;
 }
 
 export default App;
